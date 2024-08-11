@@ -26,7 +26,7 @@ namespace Vrnz2.Scheduler.Sounds
 
         private Player() 
         {
-            var path = Path.Combine(Consts.AppPath, "event_notification.wav");
+            var path = Path.Combine(Consts.AppPath, "Sounds", "event_notification.wav");
 
             _sounds = new Dictionary<TSound, SoundPlayer> 
             {
