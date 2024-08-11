@@ -1,5 +1,6 @@
 using Vrnz2.Scheduler.Enums.Types;
 using Vrnz2.Scheduler.Security;
+using Vrnz2.Scheduler.Sounds;
 using Vrnz2.Scheduler.VisualHandlers;
 using Vrnz2.Scheduler.Workers;
 using DataEntity = Vrnz2.Scheduler.Data.Entities;

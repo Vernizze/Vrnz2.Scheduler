@@ -1,4 +1,5 @@
-﻿using Tmr = System.Windows.Forms.Timer;
+﻿using Vrnz2.Scheduler.Sounds;
+using Tmr = System.Windows.Forms.Timer;
 
 namespace Vrnz2.Scheduler.Forms
 {
@@ -28,6 +29,8 @@ namespace Vrnz2.Scheduler.Forms
             InitializeComponent();
 
             _closeFormTimer = new();
+
+            Player.Instance.Play(Player.TSound.EventNoritification);
 
             TimerSetup();
         }
