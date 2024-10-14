@@ -17,6 +17,18 @@ namespace Vrnz2.Scheduler.Data.Repositories
 
         #region Methods
 
+        public void SetPlaySound(Guid Id, bool playSound) 
+        {
+            DataEntity.ScheduledEvent? scheduledEvent = FindById(Id);
+
+            if (scheduledEvent is null)
+                return;
+
+            scheduledEvent.PlaySound = playSound;
+
+            Update(scheduledEvent);
+        }
+
         protected override DataEntity.ScheduledEvent UpdateHandler(DataEntity.ScheduledEvent persistedEntity, DataEntity.ScheduledEvent newEntity)
         {
             persistedEntity.OccurrenceType = newEntity.OccurrenceType;

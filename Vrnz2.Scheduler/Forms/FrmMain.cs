@@ -84,7 +84,7 @@ namespace Vrnz2.Scheduler.Forms
             if (InvokeRequired)
             {
                 var d = new ShowEventMessagesHandler(ShowEventNotificationFormThread);
-                object value = this.Invoke(d, [eventMessages] );
+                object value = this.Invoke(d, [eventMessages]);
             }
             else
             {
@@ -110,6 +110,16 @@ namespace Vrnz2.Scheduler.Forms
         //DataGrid
         private void ConfigDataGridColumns()
         {
+            DataGridViewTextBoxColumn textColumnId = new()
+            {
+                ValueType = typeof(string),
+                Name = "id",
+                HeaderText = "Id",
+                Visible = false
+            };
+
+            dtgMain.Columns.Add(textColumnId);
+
             DataGridViewTextBoxColumn textColumnDescription = new()
             {
                 ValueType = typeof(string),
@@ -181,6 +191,7 @@ namespace Vrnz2.Scheduler.Forms
 
         private static void SetGridLine(DataEntity.ScheduledEvent scheduledEvent, DataGridViewRow row)
         {
+            row.Cells[(int)TDataGridColumnsIndexes.Id].Value = scheduledEvent.Id;
             row.Cells[(int)TDataGridColumnsIndexes.Description].Value = scheduledEvent.Description;
             row.Cells[(int)TDataGridColumnsIndexes.OccurrenceType].Value = scheduledEvent.OccurrenceType;
             row.Cells[(int)TDataGridColumnsIndexes.ExecutionDate].Value = scheduledEvent.ExecutionDate;
@@ -198,6 +209,8 @@ namespace Vrnz2.Scheduler.Forms
             UpdateEvents();
 
             ScheduleWorker.Instance.NotifyMessages += ShowEventMessages;
+
+            Hide();
         }
 
         private void FrmMain_Resize(object sender, EventArgs e)
@@ -226,6 +239,33 @@ namespace Vrnz2.Scheduler.Forms
             WindowState = FormWindowState.Normal;
 
             ntiMain.Visible = false;
+        }
+
+        private void dtgMain_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dtgMain.CurrentCell is null)
+                return;
+
+            int rowIndex = dtgMain.CurrentCell.RowIndex;
+
+            if (rowIndex >= 0)
+            {
+                DataGridViewRow? row = dtgMain.Rows[rowIndex];
+
+                if (row is null)
+                    return;
+
+                string? eventId = row.Cells[(int)TDataGridColumnsIndexes.Id].Value.ToString();
+
+                if (eventId is null)
+                    return;
+
+                FrmEventManager frmEventManager = new(eventId);
+
+                frmEventManager.ShowDialog(this);
+
+                UpdateEvents();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

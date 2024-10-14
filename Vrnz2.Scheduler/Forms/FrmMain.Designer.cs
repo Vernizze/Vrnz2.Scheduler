@@ -61,8 +61,10 @@
             dtgMain.Location = new Point(6, 19);
             dtgMain.MultiSelect = false;
             dtgMain.Name = "dtgMain";
+            dtgMain.ReadOnly = true;
             dtgMain.Size = new Size(454, 178);
             dtgMain.TabIndex = 0;
+            dtgMain.RowHeaderMouseDoubleClick += dtgMain_RowHeaderMouseDoubleClick;
             // 
             // ntiMain
             // 

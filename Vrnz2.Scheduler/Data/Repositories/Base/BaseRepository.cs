@@ -114,7 +114,7 @@ namespace Vrnz2.Scheduler.Data.Repositories.Base
             }, GeneralDatabasePath, entity);
         }
 
-        public virtual void Delete(long id)
+        public virtual void Delete(Guid id)
         {
             _dbContext.Exec((db, model_id) =>
             {

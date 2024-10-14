@@ -21,21 +21,28 @@ namespace Vrnz2.Scheduler.Forms
 
         public static object? GetRegKey()
         {
-            RegistryKey vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.CurrentLocalMachineSoftwareMicrosoftWindowsCurrentVersionRunKeyPath, true);
+            RegistryKey? vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.LocalMachineSoftwareMicrosoftWindowsCurrentVersionRunKeyPath, true);
 
-            return vrClockInRegKey.GetValue(Consts.ApplicationName);
+            return vrClockInRegKey?.GetValue(Consts.ApplicationName);
         }
 
         public static void SetRegKey()
         {
-            RegistryKey vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.CurrentLocalMachineSoftwareMicrosoftWindowsCurrentVersionRunKeyPath, true);
+            RegistryKey? vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.LocalMachineSoftwareMicrosoftWindowsCurrentVersionRunKeyPath, true);
+
+            vrClockInRegKey?.SetValue(Consts.ApplicationName, Path.Combine(Consts.AppPath, Consts.ApplicationExeName));
+        }
+
+        public static void SetRegKey2()
+        {
+            RegistryKey? vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.LocalMachineSoftwareApplicationKeyPath, true);
 
             vrClockInRegKey?.SetValue(Consts.ApplicationName, Path.Combine(Consts.AppPath, Consts.ApplicationExeName));
         }
 
         public static void DeleteRegKey()
         {
-            RegistryKey vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.CurrentLocalMachineSoftwareMicrosoftWindowsCurrentVersionRunKeyPath, true);
+            RegistryKey? vrClockInRegKey = Registry.LocalMachine.OpenSubKey(Consts.LocalMachineSoftwareMicrosoftWindowsCurrentVersionRunKeyPath, true);
 
             vrClockInRegKey?.DeleteValue(Consts.ApplicationName);
         }

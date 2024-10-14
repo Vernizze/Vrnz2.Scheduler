@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEventManager));
             grbEventManager = new GroupBox();
+            chkPlaySoundAlert = new CheckBox();
             cmbEventManagerOccurrenceType = new ComboBox();
             lblEventManagerOccurrenceType = new Label();
             dtpEventManagerEventTime = new DateTimePicker();
@@ -51,6 +52,7 @@
             numEventManagerOccurrenceMontly = new NumericUpDown();
             lblEventManagerOccurrenceMontly = new Label();
             btnSave = new Button();
+            btnDelete = new Button();
             grbEventManager.SuspendLayout();
             pnlEventManagerOccurrenceWeekly.SuspendLayout();
             pnlEventManagerOccurrenceYearly.SuspendLayout();
@@ -60,6 +62,7 @@
             // 
             // grbEventManager
             // 
+            grbEventManager.Controls.Add(chkPlaySoundAlert);
             grbEventManager.Controls.Add(cmbEventManagerOccurrenceType);
             grbEventManager.Controls.Add(lblEventManagerOccurrenceType);
             grbEventManager.Controls.Add(dtpEventManagerEventTime);
@@ -75,6 +78,18 @@
             grbEventManager.TabIndex = 0;
             grbEventManager.TabStop = false;
             grbEventManager.Text = "Dados do Evento";
+            // 
+            // chkPlaySoundAlert
+            // 
+            chkPlaySoundAlert.AutoSize = true;
+            chkPlaySoundAlert.Checked = true;
+            chkPlaySoundAlert.CheckState = CheckState.Checked;
+            chkPlaySoundAlert.Location = new Point(222, 84);
+            chkPlaySoundAlert.Name = "chkPlaySoundAlert";
+            chkPlaySoundAlert.Size = new Size(135, 19);
+            chkPlaySoundAlert.TabIndex = 10;
+            chkPlaySoundAlert.Text = "Tocar som de Alerta?";
+            chkPlaySoundAlert.UseVisualStyleBackColor = true;
             // 
             // cmbEventManagerOccurrenceType
             // 
@@ -280,11 +295,23 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // btnDelete
+            // 
+            btnDelete.Enabled = false;
+            btnDelete.Location = new Point(380, 32);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 23);
+            btnDelete.TabIndex = 5;
+            btnDelete.Text = "Excluir";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // FrmEventManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(460, 172);
+            Controls.Add(btnDelete);
             Controls.Add(btnSave);
             Controls.Add(grbEventManager);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -330,5 +357,7 @@
         private Label lblEventManagerOccurrenceYearly;
         private DateTimePicker dtpEventManagerOccurrenceYearly;
         private Button btnSave;
+        private CheckBox chkPlaySoundAlert;
+        private Button btnDelete;
     }
 }

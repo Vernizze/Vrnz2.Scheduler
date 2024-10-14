@@ -2,9 +2,10 @@
 {
     public enum TDataGridColumnsIndexes
     {
-        Description = 0,
-        OccurrenceType = 1,
-        ExecutionDate = 2,
-        ExecutionTime = 3,
+        Id = 0,
+        Description = 1,
+        OccurrenceType = 2,
+        ExecutionDate = 3,
+        ExecutionTime = 4,
     }
 }

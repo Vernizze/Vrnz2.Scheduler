@@ -7,6 +7,13 @@ namespace Vrnz2.Scheduler.Data.Entities
     public class ScheduledEvent
         : BaseDataEntity
     {
+        #region Constructors
+
+        public ScheduledEvent() 
+            => PlaySound = false;
+
+        #endregion
+
         #region Atributtes
 
         [Column("occurrence_type")]
@@ -20,6 +27,9 @@ namespace Vrnz2.Scheduler.Data.Entities
 
         [Column("execution_time")]
         public TimeOnly? ExecutionTime { get; set; }
+
+        [Column("play_sound")]
+        public bool PlaySound { get; set; }
 
         #endregion
     }
